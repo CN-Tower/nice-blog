@@ -1,0 +1,34 @@
+<div id="blog-header" class="page-wrapper flex">
+  <div id="blog-log">
+    <img src="assets/img/nice-blog.png" alt="Nice Blog">
+  </div>
+  <div id="global-search">
+    <nz-input-group [nzSuffix]="suffixIcon">
+      <input placeholder="站内搜索" nz-input [(ngModel)]="inputValue" (ngModelChange)="onChange($event)" [nzAutocomplete]="auto"/>
+    </nz-input-group>
+    <ng-template #suffixIcon>
+      <i nz-icon type="search"></i>
+    </ng-template>
+    <nz-autocomplete #auto>
+      <nz-auto-optgroup *ngFor="let group of optionGroups" [nzLabel]="groupTitle">
+        <ng-template #groupTitle>
+          <span>{{group.title}}
+            <a class="more-link" href="https://www.google.com/search?q=ng+zorro" target="_blank">更多</a>
+          </span>
+        </ng-template>
+        <nz-auto-option *ngFor="let option of group.children" [nzLabel]="option.title" [nzValue]="option">
+          {{option.title}}
+          <span class="certain-search-item-count">{{option.count}} 人  关注</span>
+        </nz-auto-option>
+      </nz-auto-optgroup>
+    </nz-autocomplete>
+  </div>
+  <div id="blog-menu">
+    <ul nz-menu [nzMode]="'horizontal'">
+      <li nz-menu-item [nzSelected]="true">主页</li>
+      <li nz-menu-item>博文</li>
+      <li nz-menu-item>发现</li>
+      <li nz-menu-item>用户</li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+@import '../shared/config.less';
+
+#blog-header {
+  display: flex;
+  justify-content: space-between;
+  #blog-log {
+    .side;
+    img {
+      width: 100%;
+    }
+  }
+  #global-search {
+    width: 260px;
+    padding-top: 4px;
+  }
+  #blog-menu {
+    .ant-menu {
+      color: #fff;
+      background: transparent;
+      .ant-menu-item-active,
+      .ant-menu-item-open,
+      .ant-menu-item-selected,
+      .ant-menu-item:hover {
+        border-bottom: 2px solid #c8c9bd !important;
+        color: #c8c9bd !important;
+      }
+    }
+  }
+}
