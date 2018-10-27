@@ -1,12 +1,12 @@
 <header>
   <app-header></app-header>
 </header>
-<div class="page-wrapper flex">
-  <section id="sidebar">
-    <!-- <app-sidebar></app-sidebar> -->
-  </section>
-  <section id="appmain">
+<section id="app-body" class="page-wrapper flex">
+  <div id="sidebar">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div id="app-main">
     <router-outlet></router-outlet>
-  </section>
-</div>
+  </div>
+</section>
 <footer></footer>

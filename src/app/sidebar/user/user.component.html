@@ -1,0 +1,20 @@
+<nz-skeleton [nzLoading]="false" [nzActive]="true" [nzAvatar]="true">
+  <nz-card [nzActions]="[articles, stars, followers, following]">
+    <nz-card-meta nzTitle="Card title" nzDescription="This is the description" [nzAvatar]="avatarTemplate"></nz-card-meta>
+  </nz-card>
+  <ng-template #avatarTemplate>
+    <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+  </ng-template>
+  <ng-template id="user-info" #articles>
+    文章<br>22
+  </ng-template>
+  <ng-template #stars>
+    收藏<br>58
+  </ng-template>
+  <ng-template #followers>
+    粉丝<br>1233
+  </ng-template>
+  <ng-template #following>
+    关注<br>388
+  </ng-template>
+</nz-skeleton>

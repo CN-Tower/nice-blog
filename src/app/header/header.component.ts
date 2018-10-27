@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +11,14 @@ export class HeaderComponent implements OnInit {
   inputValue: string;
   optionGroups: any[];
 
+  constructor(private router: Router) { }
+
   onChange(value: any): void {
     console.log(value);
+  }
+
+  goToRouter(routerUrl: string) {
+    this.router.navigateByUrl(routerUrl);
   }
 
   ngOnInit(): void {
