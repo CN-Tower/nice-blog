@@ -2,7 +2,7 @@ const fn = require('funclib');
 const path = require('path');
 const root = path.resolve('../');
 const publicPath = path.join(root, 'server/public');
-const distPath = path.join(root, 'client/dist');
+const distPath = path.join(root, 'client/dist/nice-blog');
 
 console.log('');
 fn.progress.start('Moving Files');
