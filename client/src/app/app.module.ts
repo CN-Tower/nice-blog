@@ -6,7 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarModule } from './sidebar/sidebar.module';
-
+import { HomeModule } from './home/home.module';
+import { ArticleModule } from './article/article.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { SidebarModule } from './sidebar/sidebar.module';
     SharedModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SidebarModule
+    SidebarModule,
+    HomeModule,
+    ArticleModule
   ],
   bootstrap: [AppComponent]
 })

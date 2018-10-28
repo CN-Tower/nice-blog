@@ -25,10 +25,10 @@
   </div>
   <div id="blog-menu">
     <ul nz-menu [nzMode]="'horizontal'">
-      <li nz-menu-item [nzSelected]="true" (click)="goToRouter('/home')">主页</li>
-      <li nz-menu-item (click)="goToRouter('/article')">博文</li>
-      <li nz-menu-item (click)="goToRouter('/explore')">发现</li>
-      <li nz-menu-item (click)="goToRouter('/profile')">用户</li>
+      <li nz-menu-item [nzSelected]="curRouter == '/home'" (click)="goToRouter('/home')">主页</li>
+      <li nz-menu-item [nzSelected]="curRouter == '/article'" (click)="goToRouter('/article')">博文</li>
+      <li nz-menu-item [nzSelected]="curRouter == '/explore'" (click)="goToRouter('/explore')">发现</li>
+      <li nz-menu-item [nzSelected]="curRouter == '/profile'" (click)="goToRouter('/profile')">用户</li>
     </ul>
   </div>
 </div>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+
+type CurRouter = '/home' | '/article' | '/explore' | '/profile';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  curRouter: CurRouter;
   inputValue: string;
   optionGroups: any[];
 
@@ -22,6 +25,13 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        ['/home', '/article', '/explore', '/profile'].forEach((rt: CurRouter) => {
+          if (this.router.url.startsWith(rt)) this.curRouter = rt;
+        });
+      }
+    });
     setTimeout(() => {
       this.optionGroups = [{
         title: '话题',
