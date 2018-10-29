@@ -1,3 +1,19 @@
-<p>
-  archive works!
-</p>
+<nz-card nzTitle="时间轴" [nzExtra]="extraTemplate">
+  <nz-timeline>
+    <nz-timeline-item>
+      <span nz-tooltip nzTitle="2015-09-01" nzPlacement="left">Create a services site</span>
+    </nz-timeline-item>
+    <nz-timeline-item>
+      <span nz-tooltip nzTitle="2015-09-01" nzPlacement="left">Initial network problems</span>
+    </nz-timeline-item>
+    <nz-timeline-item>
+      <span nz-tooltip nzTitle="2015-09-01" nzPlacement="left">Technical testing</span>
+    </nz-timeline-item>
+    <nz-timeline-item>
+      <span nz-tooltip nzTitle="2015-09-01" nzPlacement="left">etwork problems being ...</span>
+    </nz-timeline-item>
+  </nz-timeline>
+</nz-card>
+<ng-template #extraTemplate>
+  <a>More</a>
+</ng-template>
