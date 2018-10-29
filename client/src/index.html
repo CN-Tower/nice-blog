@@ -10,6 +10,51 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root></app-root>
+  <style type="text/css">
+    #browser-hint {
+      display: none;
+      text-align: center;
+      width: 100%;
+      height: 400px;
+      margin-top: 80px;
+    }
+    #browser-hint img {
+      border: none;
+    }
+    #browser-hint a {
+      text-decoration: none;
+      display: inline-block;
+      overflow: hidden;
+    }
+  </style>
+  <div id="browser-hint">
+    <div class="link-img">
+      <a href="http://www.google.cn/chrome/browser/">
+        <img src="./img/chrome.png" />
+      </a>
+      <a href="https://www.mozilla.org/en-US/firefox/products/?v=b">
+        <img src="./img/firefox.png" />
+      </a>
+    </div>
+    <div class="hint-msg">
+      <p>您好，当前的浏览器不支持本网站，请使用谷歌或火狐浏览器打开！</p>
+      <p>Hi, the current browsers do not support this website<br>
+        please use the Chrome or Firefox browser to get a better experience!</p>
+    </div>
+  </div>
+  <div id="app-container">
+    <app-root>Loading...</app-root>
+  </div>
+  <script>
+    var userAgent = navigator.userAgent;
+    var isFirefox = userAgent.indexOf("Firefox") > -1;
+    var isSafari = userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") == -1;
+    var isChrome = userAgent.indexOf("Chrome") > -1 && userAgent.indexOf("Safari") > -1;
+    if (!(isFirefox || isChrome || isSafari)) {
+      document.body.style.background = '#ffffff';
+      document.getElementById('browser-hint').style.display = 'block';
+      document.getElementById('app-container').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
