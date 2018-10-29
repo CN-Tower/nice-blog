@@ -1,3 +1,10 @@
-<p>
-  category works!
-</p>
+<nz-card nzTitle="文章分类" [nzExtra]="extraTemplate">
+  <nz-tree
+    [nzData]="nodes"
+    nzShowLine="true"
+    (nzClick)="nzEvent($event)">
+  </nz-tree>
+</nz-card>
+<ng-template #extraTemplate>
+  <a>More</a>
+</ng-template>
