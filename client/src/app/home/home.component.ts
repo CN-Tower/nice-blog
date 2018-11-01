@@ -8,7 +8,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   array = [ 1, 2, 3, 4 ];
-  data = new Array(7).fill({}).map((i, index) => {
+  data = new Array(6).fill({}).map((i, index) => {
     return {
       href: 'http://ant.design',
       title: `ant design part ${index}`,
