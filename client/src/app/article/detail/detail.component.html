@@ -1,0 +1,187 @@
+<div nz-row [nzGutter]="24">
+  <div nz-col [nzSpan]="12">
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a *ngIf="from == 'home'" routerLink="/home">主页</a>
+        <a *ngIf="from == 'article'" routerLink="/article">博文</a>
+        <a *ngIf="from == 'explore'" routerLink="/explore">发现</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item *ngIf="from != 'home'">
+        <a *ngIf="from == 'article'" routerLink="/article/my-article">我的文章</a>
+        <a *ngIf="from == 'explore'" routerLink="/article/find-article">发现文章</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>文章详情</nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+  <div class="article-operation" nz-col [nzSpan]="12">
+    <button nz-button (click)="goBack()">编辑</button> 
+    <button nz-button (click)="goBack()">返回 &gt;</button> 
+  </div>
+</div>
+<div class="article-metadata">
+  <h1 class="meta-item">文章标题</h1>
+  <div class="meta-item">
+    <nz-tag>magenta</nz-tag>
+    <nz-tag>red</nz-tag>
+    <nz-tag>volcano</nz-tag>
+    <nz-tag>orange</nz-tag>
+  </div>
+  <h4 class="meta-item">
+    全力打造最好用的json格式化工具，欢迎一起来玩
+  </h4>
+  <div class="meta-item">
+    <i nz-icon type="star-o" style="margin-right: 8px;"></i> 156
+    <nz-divider nzType="vertical"></nz-divider>
+    <i nz-icon type="like-o" style="margin-right: 8px;"></i> 156
+    <nz-divider nzType="vertical"></nz-divider>
+    <i nz-icon type="message" style="margin-right: 8px;"></i> 2
+  </div>
+</div>
+<article class="markdown-body">
+    <h1 id="-zjson">转杰森 | ZJSON</h1>
+    <blockquote>
+    <p>全力打造最好用的json格式化工具，欢迎一起来玩！</p>
+    </blockquote>
+    <h3 id="-">访问地址</h3>
+    <ul>
+    <li>地址:      <a href="http://zjson.net">http://zjson.net</a></li>
+    <li>FuncLib: <a href="http://funclib.net">http://funclib.net</a></li>
+    <li>GitHub:  <a href="http://github.com/CN-Tower/zjson">http://github.com/CN-Tower/zjson</a></li>
+    <li>GitHub:  <a href="http://github.com/CN-Tower/funclib.js">http://github.com/CN-Tower/funclib.js</a></li>
+    <li>QQ群:    174136590</li>
+    </ul>
+    <h4 id="-">主页界面</h4>
+    <p><img src="/zjson.png" alt=""></p>
+    <h4 id="-">对比界面</h4>
+    <p><img src="/zjson-diff.png" alt=""></p>
+    <h3 id="-">简单介绍</h3>
+    <p>转杰森是使用Angular6 + Typescript + ngx-bootstrap + monaco-editor开发的一个在线Json格式化工具，功能丰富强大、界面简洁美观，还有很多高级特性：</p>
+    <ul>
+    <li>支持错误的json解析及错误行号和错误类型提示；</li>
+    <li>支持python unicode集合的解析；</li>
+    <li>支持保存、删除和呈现格式化的历史；</li>
+    <li>支持格式化后的json以文件的形式下载；</li>
+    <li>支持中英文双语国际化；</li>
+    <li>支持线上json分享；</li>
+    <li>支持多种皮肤切换；</li>
+    <li>支持JSON转义、压缩；</li>
+    <li>支持JSON标准化析，把非标准JSON（如：js的object）转化为标准JSON格式；</li>
+    <li>支持JSON对比（有与原码对比、与历史比对和与新建代码对比三种模式）；</li>
+    <li>还有更多的功能、配置、特性等你去发现！</li>
+    </ul>
+    <p>相比其它在线格式化工具，如：bejson.com和json.cn等，转杰森界面更加专业、功能更加实用，绝对是开发和测试的好工具。</p>
+    <p>欢迎各位大虾一起来玩，Start、Fork或提Issue都是极好的！</p>
+    <h3 id="-">一起来玩</h3>
+    <pre><code># 1、下载代码
+    $ git clone http://github.com/CN-Tower/zjson.git         # Github
+    $ git clone http://gitlab.zte.com.cn/CN-Tower/zjson.git  # Gitlab
+    
+    # 2、安装或解压node_modules
+    $ cd zjson/client
+    $ npm install
+    
+    # 3、Start
+    $ npm start
+    
+    # 4、Build
+    $ npm run update</code></pre><h3 id="-">项目结构</h3>
+    <pre><code>zjson
+    ├── client                              
+    │   ├── node_modules/                   
+    │   ├── src                             
+    │   │   ├── app                         
+    │   │   │   ├── app-config
+    │   │   │   │   ├── config-items
+    │   │   │   │   │   ├── config-indent.component.ts
+    │   │   │   │   │   ├── config-lang.component.ts
+    │   │   │   │   │   ├── config-quote.component.ts
+    │   │   │   │   │   └── config-theme.component.ts
+    │   │   │   │   ├── app-config.component.html
+    │   │   │   │   ├── app-config.component.less
+    │   │   │   │   ├── app-config.component.ts
+    │   │   │   │   └── index.ts
+    │   │   │   ├── attachments
+    │   │   │   │   ├── index.ts
+    │   │   │   │   ├── zjs-attachment.ts
+    │   │   │   │   ├── zjs-compare.component.ts
+    │   │   │   │   ├── zjs-hint.component.ts
+    │   │   │   │   ├── zjs-hist.component.ts
+    │   │   │   │   ├── zjs-info.component.ts
+    │   │   │   │   ├── zjs-loading.component.ts
+    │   │   │   │   ├── zjs-notice.component.ts
+    │   │   │   │   ├── zjs-title.component.ts
+    │   │   │   │   └── zjs-update.component.ts
+    │   │   │   ├── formatter       
+    │   │   │   │   ├── formatter.conf.ts
+    │   │   │   │   ├── formatter.core.ts
+    │   │   │   │   └── formatter.help.ts
+    │   │   │   ├── monaco-editor        
+    │   │   │   │   ├── index.ts
+    │   │   │   │   ├── monaco-diff-editor.component.ts
+    │   │   │   │   ├── monaco-editor.base.ts
+    │   │   │   │   ├── monaco-editor.component.ts
+    │   │   │   │   ├── monaco-editor.themes.ts
+    │   │   │   │   ├── zjs-diff-editor.component.html
+    │   │   │   │   ├── zjs-diff-editor.component.less
+    │   │   │   │   └── zjs-diff-editor.component.ts
+    │   │   │   ├── shared
+    │   │   │   │   ├── index.ts
+    │   │   │   │   ├── shared-broadcast.service.ts
+    │   │   │   │   ├── shared-interface.ts
+    │   │   │   │   ├── shared-style.less
+    │   │   │   │   └── theme.less
+    │   │   │   ├── app.component.class  
+    │   │   │   ├── app.component.html   
+    │   │   │   ├── app.component.less   
+    │   │   │   ├── app.component.spec.ts
+    │   │   │   ├── app.component.ts     
+    │   │   │   ├── app.modules.ts       
+    │   │   │   └── app.service.ts       
+    │   │   ├── assets                  
+    │   │   │   ├── css                 
+    │   │   │   │   ├── animate.css     
+    │   │   │   │   └── loading.css     
+    │   │   │   ├── i18n                
+    │   │   │   │   ├── en.json         
+    │   │   │   │   └── zh.json         
+    │   │   │   ├── lib 
+    │   │   │   │   ├── monaco-editor/  
+    │   │   │   │   ├── bootstrap.min.js  
+    │   │   │   │   ├── FileSaver.js   
+    │   │   │   │   ├── funclib.min.js
+    │   │   │   │   └── jquery.min.js                 
+    │   │   │   └── img/  
+    │   │   ├── favicon.ico             
+    │   │   ├── index.html              
+    │   │   ├── main.ts                 
+    │   │   ├── styles.css              
+    │   │   ├── typings.d.ts            
+    │   │   └── ...                     
+    │   ├── tools                       
+    │   │   └── update-zjson.js         
+    │   ├── package.json                
+    │   ├── angular.json                
+    │   ├── proxy.conf.json             
+    │   ├── README.md                   
+    │   └── ...                         
+    ├── server                      
+    │   ├── node_modules/           
+    │   ├── views/                  
+    │   ├── zjson/                  
+    │   ├── bin                     
+    │   │   └── www                 
+    │   ├── routes                  
+    │   │   ├── api.js              
+    │   │   └── index.js            
+    │   ├── work                    
+    │   │   └── visits-count.work.js
+    │   ├── app.js                  
+    │   └── package.json            
+    ├── .editorconfig               
+    ├── .gitignore                  
+    ├── Dockerfile                  
+    ├── nginx.conf                  
+    ├── zjson.sh                    
+    ├── README.md                   
+    └── ... </code></pre>
+</article>
