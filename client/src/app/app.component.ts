@@ -12,17 +12,17 @@ export class AppComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.initSidebarScroll();
     this.initAppMainHeight();
-    win.onresize = () => this.initAppMainHeight();
+    window.onresize = () => this.initAppMainHeight();
   }
 
   initSidebarScroll() {
-    win.onscroll = () => {
+    window.onscroll = () => {
       const appMain: any = document.querySelector('#app-main');
       const sidebar: any = document.querySelector('#sidebar-wrapper');
       const appHeight = appMain.offsetHeight;
       const barHeight = sidebar.offsetHeight;
       if (appHeight > barHeight) {
-        const winHeight = win.innerHeight;
+        const winHeight = window.innerHeight;
         const scrollTop = document.documentElement.scrollTop;
         const fixedTop = barHeight - winHeight + 172;
         if (fixedTop > 0 && scrollTop > fixedTop) {
@@ -41,7 +41,7 @@ export class AppComponent implements AfterViewInit {
 
   initAppMainHeight() {
     const sidebar: any = document.querySelector('#sidebar');
-    const winHeight = win.innerHeight;
+    const winHeight = window.innerHeight;
     sidebar.style.minHeight = winHeight - 60 - 116 + 'px';
   }
 }
