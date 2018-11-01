@@ -10,6 +10,12 @@ export class AppComponent implements AfterViewInit {
   title = 'nice-blog';
 
   ngAfterViewInit() {
+    this.initSidebarScroll();
+    this.initAppMainHeight();
+    win.onresize = () => this.initAppMainHeight();
+  }
+
+  initSidebarScroll() {
     win.onscroll = () => {
       const appMain: any = document.querySelector('#app-main');
       const sidebar: any = document.querySelector('#sidebar-wrapper');
@@ -31,5 +37,11 @@ export class AppComponent implements AfterViewInit {
         sidebar.classList.remove('position-fixed');
       }
     };
+  }
+
+  initAppMainHeight() {
+    const sidebar: any = document.querySelector('#sidebar');
+    const winHeight = win.innerHeight;
+    sidebar.style.minHeight = winHeight - 60 - 116 + 'px';
   }
 }
