@@ -1,0 +1,52 @@
+<nz-breadcrumb>
+  <nz-breadcrumb-item>
+    <a routerLink="/article">博文</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a routerLink="/article/my-article">我的文章</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>写文章</nz-breadcrumb-item>
+</nz-breadcrumb>
+<nz-card class="publish-article">
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzSpan]="12">
+      <label for="article-title">标题: </label>
+      <input id="article-title" nz-input placeholder="请输入名称" [(ngModel)]="articleTitle">
+    </div>
+    <div nz-col [nzSpan]="12">
+      <label for="article-category">分类:</label>
+      <nz-cascader nzChangeOnSelect [nzOptions]="nzOptions" [(ngModel)]="values"></nz-cascader>
+    </div>
+  </div>
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzSpan]="24">
+      <label class="tags-label" for="article-tag">标签:</label>
+      <nz-tag *ngFor="let tag of tags; let i = index;"
+              [nzMode]="'closeable'" (nzAfterClose)="handleClose(tag)">
+        {{ sliceTagName(tag) }}
+      </nz-tag>
+      <nz-tag *ngIf="!inputVisible" class="editable-tag" (click)="showInput()">
+        <i nz-icon type="plus"></i> New Tag
+      </nz-tag>
+      <input #inputElement nz-input
+            nzSize="small" *ngIf="inputVisible" type="text"
+            [(ngModel)]="inputValue" style="width: 78px;"
+            (blur)="handleInputConfirm()" (keydown.enter)="handleInputConfirm()">
+    </div>
+  </div>
+  <div class="desc-row" nz-row [nzGutter]="24">
+    <div nz-col [nzSpan]="24">
+      <label for="article-decs">描述: </label>
+      <textarea nz-input rows="4" [nzAutosize]="{ minRows: 2, maxRows: 6 }" [(ngModel)]="inputValue"></textarea>
+    </div>
+  </div>
+</nz-card>
+<div class="publish-wrapper">
+  <textarea id="publish-textarea"></textarea>
+</div>
+<div class="article-operation">
+  <label nz-checkbox [(ngModel)]="isPrivate">发布为私密文章</label>
+  <br>
+  <button nz-button nzType="primary">发布此文章</button>
+  <button nz-button (click)="goBack()">放弃并返回</button> 
+</div>
