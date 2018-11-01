@@ -1,3 +1,8 @@
-<p>
-  explore works!
-</p>
+<nz-radio-group [(ngModel)]="viewRouter" (ngModelChange)="onViewChange()">
+  <label nz-radio-button nzValue="find-article">发现文章</label>
+  <label nz-radio-button nzValue="find-user">发现博友</label>
+</nz-radio-group>
+<button class="fr" nz-button (click)="toggleFilter()">
+  {{isShowFilter ? '隐藏搜索框' : '显示搜索框'}}
+</button>
+<router-outlet></router-outlet>
