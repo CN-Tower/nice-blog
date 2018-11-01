@@ -1,3 +1,17 @@
-<p>
-  profile works!
-</p>
+<nz-tabset [nzAnimated]="false"
+           [nzSelectedIndex]="activeTabIdx"
+           (nzSelectedIndexChange)="onChangeView($event)">
+  <ng-container *ngIf="isUserSelf">
+    <nz-tab nzTitle="历史"></nz-tab>
+    <nz-tab nzTitle="粉丝"></nz-tab>
+    <nz-tab nzTitle="关注"></nz-tab>
+    <nz-tab nzTitle="设置"></nz-tab>
+  </ng-container>
+  <ng-container *ngIf="!isUserSelf">
+    <nz-tab nzTitle="文章"></nz-tab>
+    <nz-tab nzTitle="收藏"></nz-tab>
+    <nz-tab nzTitle="粉丝"></nz-tab>
+    <nz-tab nzTitle="关注"></nz-tab>
+  </ng-container>
+</nz-tabset>
+<router-outlet></router-outlet>
