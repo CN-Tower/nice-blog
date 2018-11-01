@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
+        document.scrollingElement.scrollTop = 0;
         ['/home', '/article', '/explore', '/profile'].forEach((rt: CurRouter) => {
           if (this.router.url.startsWith(rt)) this.curRouter = rt;
         });
