@@ -1,9 +1,15 @@
 <div id="sidebar">
-  <app-login *ngIf="false" class="sidebar-item"></app-login>
-  <app-user class="sidebar-item"></app-user>
-  <app-hot class="sidebar-item"></app-hot>
-  <app-recent class="sidebar-item"></app-recent>
-  <app-category class="sidebar-item"></app-category>
-  <app-archive class="sidebar-item"></app-archive>
-  <app-tags class="sidebar-item"></app-tags>
+  <ng-container *ngIf="isRouterProfile">
+    <app-avatar class="sidebar-item"></app-avatar>
+    <app-meta class="sidebar-item"></app-meta>
+  </ng-container>
+  <ng-container *ngIf="!isRouterProfile">
+    <app-login *ngIf="false" class="sidebar-item"></app-login>
+    <app-user class="sidebar-item"></app-user>
+    <app-hot class="sidebar-item"></app-hot>
+    <app-active class="sidebar-item"></app-active>
+    <app-category class="sidebar-item"></app-category>
+    <app-tags class="sidebar-item"></app-tags>
+    <app-archive class="sidebar-item"></app-archive>
+  </ng-container>
 </div>
