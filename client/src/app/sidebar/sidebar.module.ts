@@ -11,11 +11,13 @@ import { LoginComponent } from './login/login.component';
 import { CategoryComponent } from './category/category.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { MetaComponent } from './meta/meta.component';
+import { RecentComponent } from './recent/recent.component';
+
 
 const SIDEBAR_COMPONENTS = [
   UserComponent, HotComponent, ArchiveComponent, TagsComponent,
   ActiveComponent, SidebarComponent, LoginComponent, CategoryComponent,
-  AvatarComponent, MetaComponent
+  AvatarComponent, MetaComponent, RecentComponent
 ];
 
 @NgModule({
