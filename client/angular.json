@@ -33,9 +33,13 @@
             ],
             "styles": [
               "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "src/assets/css/github-markdown.css",
+              "src/assets/lib/simplemde/css/simplemde.min.css",
               "src/styles.less"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/lib/simplemde/js/simplemde.min.js"
+            ]
           },
           "configurations": {
             "production": {
