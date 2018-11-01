@@ -46,23 +46,68 @@
     </div>
   </div>
 </nz-card>
-<nz-list class="blog-list" [nzDataSource]="data" [nzItemLayout]="'vertical'" [nzRenderItem]="item" [nzPagination]="pagination">
-  <ng-template #item let-item>
-    <nz-list-item [nzContent]="item.content" [nzActions]="[starAction,likeAction,msgAction]" [nzExtra]="extra">
-      <ng-template #starAction><i nz-icon type="star-o" style="margin-right: 8px;"></i> 156</ng-template>
-      <ng-template #likeAction><i nz-icon type="like-o" style="margin-right: 8px;"></i> 156</ng-template>
-      <ng-template #msgAction><i nz-icon type="message" style="margin-right: 8px;"></i> 2</ng-template>
-      <nz-list-item-meta [nzAvatar]="item.avatar" [nzTitle]="nzTitle" [nzDescription]="item.description">
-        <ng-template #nzTitle>
-          <a [routerLink]="['/article/detail', item.title]" [queryParams]="{from: 'article'}">{{item.title}}</a>
+<div *ngIf="!articleService.toggleManage.isManaging">
+  <nz-list class="blog-list" [nzDataSource]="data" [nzItemLayout]="'vertical'" [nzRenderItem]="item" [nzPagination]="pagination">
+    <ng-template #item let-item>
+      <nz-list-item [nzContent]="item.content" [nzActions]="[starAction,likeAction,msgAction]" [nzExtra]="extra">
+        <ng-template #starAction><i nz-icon type="star-o" style="margin-right: 8px;"></i> 156</ng-template>
+        <ng-template #likeAction><i nz-icon type="like-o" style="margin-right: 8px;"></i> 156</ng-template>
+        <ng-template #msgAction><i nz-icon type="message" style="margin-right: 8px;"></i> 2</ng-template>
+        <nz-list-item-meta [nzAvatar]="item.avatar" [nzTitle]="nzTitle" [nzDescription]="item.description">
+          <ng-template #nzTitle>
+            <a [routerLink]="['/article/detail', item.title]" [queryParams]="{from: 'article'}">{{item.title}}</a>
+          </ng-template>
+        </nz-list-item-meta>
+        <ng-template #extra>
+          <img width="200" alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png">
         </ng-template>
-      </nz-list-item-meta>
-      <ng-template #extra>
-        <img width="200" alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png">
-      </ng-template>
-    </nz-list-item>
+      </nz-list-item>
+    </ng-template>
+  </nz-list>
+  <ng-template #pagination>
+    <nz-pagination [nzPageIndex]="1" [nzTotal]="50"></nz-pagination>
   </ng-template>
-</nz-list>
-<ng-template #pagination>
-  <nz-pagination [nzPageIndex]="1" [nzTotal]="50"></nz-pagination>
-</ng-template>
+</div>
+<div class="article-manage" *ngIf="articleService.toggleManage.isManaging">
+  <div style="margin-bottom: 16px;">
+    <button nz-button [disabled]="disabledButton" [nzLoading]="operating" (click)="operateData()">
+      取消收藏
+    </button>
+  </div>
+  <nz-table #rowSelectionTable [nzData]="dataSet" [nzBordered]="true" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+    (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()">
+    <thead>
+      <tr>
+        <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+        <th>名称</th>
+        <th>作者</th>
+        <th>查阅</th>
+        <th>点赞</th>
+        <th>收藏</th>
+        <th>发布时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of rowSelectionTable.data">
+        <td nzShowCheckbox [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus()"></td>
+        <td><a>{{data.name}}</a></td>
+        <td><a>{{data.name}}</a></td>
+        <td>{{data.age}}</td>
+        <td>{{data.age}}</td>
+        <td>{{data.age}}</td>
+        <td>2018-05-01 08:09</td>
+        <td>
+          <div class="editable-row-operations">
+            <nz-dropdown-button (nzClick)="log()">
+              取消收藏
+              <ul nz-menu>
+                <li nz-menu-item>置顶收藏</li>
+              </ul>
+            </nz-dropdown-button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
