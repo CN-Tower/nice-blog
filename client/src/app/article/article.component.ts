@@ -9,6 +9,7 @@ import { ArticleService } from './article.service';
 })
 export class ArticleComponent implements OnInit {
   isShowFilter: Boolean = this.articleService.toggleFilter.isShow;
+  isManaging: Boolean = this.articleService.toggleManage.isManaging;
   viewRouter: 'my-article' | 'my-collection';
 
   constructor( private router: Router, private articleService: ArticleService) { }
@@ -24,6 +25,11 @@ export class ArticleComponent implements OnInit {
   toggleFilter() {
     this.isShowFilter = !this.isShowFilter;
     this.articleService.toggleFilter.isShow = this.isShowFilter;
+  }
+
+  toggleManage() {
+    this.isManaging = !this.isManaging;
+    this.articleService.toggleManage.isManaging = this.isManaging;
   }
 
   onChangeView() {
