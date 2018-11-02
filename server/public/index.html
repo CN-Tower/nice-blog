@@ -43,7 +43,261 @@
     </div>
   </div>
   <div id="app-container">
-    <app-root>Loading...</app-root>
+    <app-root>
+      <style type="text/css">
+        body, html {
+          margin: 0;
+          -webkit-font-smoothing: antialiased;
+          background: #68ABAD;
+          text-align: center;
+        }
+        #app-loading .loading-hint {
+          text-align: center;
+          margin-top: 24px;
+          font-size: 18px;
+          font-weight: 400;
+        }
+        #app-loading .solar {
+          height: 50px;
+          width: 50px;
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+          background: orange;
+          border-radius: 25px;
+          animation: glow 1.5s linear infinite;
+          -webkit-animation: glow 1.5s linear infinite;
+          -moz-animation: glow 1.5s linear infinite;
+        }
+        #app-loading .solar i{
+          border-radius: 250px;
+          display:block;
+          position:absolute;
+          border: 1px solid rgba(255,255,255, 0.15);
+          box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          transform-origin: 50% 50%;
+          -webkit-transform-origin: 50% 50%;
+          -moz-transform-origin: 50% 50%;
+        }
+        #app-loading .solar i:before {
+          content:'';
+          border-radius: 25px;
+          background: black;
+          display: block;
+          position:absolute;
+          top: -5px;
+          right: 45%;
+        }
+        #app-loading .solar i.mercury {
+          width: 80px;
+          height: 80px;
+          margin-left: -40px;
+          left: 50%;
+          top: 50%;
+          margin-top: -40px;
+          animation: orbit .5s linear infinite;
+          -webkit-animation: orbit .5s linear infinite;
+          -moz-animation: orbit .5s linear infinite;
+        }
+        #app-loading .solar i.mercury:before {
+          background: #6F5F5F;
+          height: 7px;
+          width: 7px;
+        }
+        #app-loading .solar i.venus {
+          width: 110px;
+          height: 110px;
+          margin-left: -55px;
+          left: 50%;
+          top: 50%;
+          margin-top: -55px;
+          animation: orbit 1s linear infinite;
+          -webkit-animation: orbit 1s linear infinite;
+          -moz-animation: orbit 1s linear infinite;
+        }
+        #app-loading .solar i.venus:before {
+          background: #E7A71F;
+          height: 10px;
+          width: 10px;
+        }
+        #app-loading .solar i.earth {
+          width: 140px;
+          height: 140px;
+          margin-left: -70px;
+          left: 50%;
+          top: 50%;
+          margin-top: -70px;
+          animation: orbit 1.5s linear infinite;
+          -webkit-animation: orbit 1.5s linear infinite;
+          -moz-animation: orbit 1.5s linear infinite;
+        }
+        #app-loading .solar i.earth:before {
+          background: #63BEE2;
+          height: 10px;
+          width: 10px;
+        }
+        #app-loading .solar i.mars {
+          width: 170px;
+          height: 170px;
+          margin-left: -85px;
+          left: 50%;
+          top: 50%;
+          margin-top: -85px;
+          animation: orbit 2s linear infinite;
+          -webkit-animation: orbit 2s linear infinite;
+          -moz-animation: orbit 2s linear infinite;
+        }
+        #app-loading .solar i.mars:before {
+          background: red;
+          height: 10px;
+          width: 10px;
+        }
+        #app-loading .solar i.belt {
+          box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          border-width: 25px;
+          width: 240px;
+          height: 240px;
+          margin-left: -120px;
+          border-color: rgba(36, 35, 35, 0.21);
+          left: 50%;
+          top: 50%;
+          margin-top: -120px;
+        }
+        #app-loading .solar i.jupiter {
+          width: 260px;
+          height: 260px;
+          margin-left: -130px;
+          left: 50%;
+          top: 50%;
+          margin-top: -130px;
+          animation: orbit 2.5s linear infinite;
+          -webkit-animation: orbit 2.5s linear infinite;
+          -moz-animation: orbit 2.5s linear infinite;
+        }
+        #app-loading .solar i.jupiter:before {
+          background: #CF9B2B;
+          top: -15px;
+          height: 30px;
+          width: 30px;
+        }
+        #app-loading .solar i.saturn {
+          width: 320px;
+          height: 320px;
+          margin-left: -160px;
+          left: 50%;
+          top: 50%;
+          margin-top: -160px;
+          animation: orbit 3s linear infinite;
+          -webkit-animation: orbit 3s linear infinite;
+          -moz-animation: orbit 3s linear infinite;
+        }
+        #app-loading .solar i.saturn:before {
+          background: #CF7A2B;
+          top: -10px;
+          height: 20px;
+          width: 20px;
+        }
+        #app-loading .solar i.saturn:after {
+          background: #fff;
+          width: 30px;
+          height: 1px;
+          content: '';
+          position: absolute;
+          display: block;
+          background: #FFF;
+          width: 30px;
+          height: 1px;
+          content: '';
+          right: 43.5%;
+          transform: rotate(20deg);
+          -webkit-transform: rotate(20deg);
+          -moz-transform: rotate(20deg);
+        }
+        #app-loading .solar i.uranus {
+          width: 360px;
+          height: 360px;
+          margin-left: -180px;
+          left: 50%;
+          top: 50%;
+          margin-top: -180px;
+          animation: orbit 3.5s linear infinite;
+          -webkit-animation: orbit 3.5s linear infinite;
+          -moz-animation: orbit 3.5s linear infinite;
+        }
+        #app-loading .solar i.uranus:before {
+          background: #10C593;
+          top: -8px;
+          height: 15px;
+          width: 15px;
+        }
+        #app-loading .solar i.neptune {
+          width: 400px;
+          height: 400px;
+          margin-left: -200px;
+          left: 50%;
+          top: 50%;
+          margin-top: -200px;
+          animation: orbit 4s linear infinite;
+          -webkit-animation: orbit 4s linear infinite;
+          -moz-animation: orbit 4s linear infinite;
+        }
+        #app-loading .solar i.neptune:before {
+          background: #1470E4;
+          top: -8px;
+          height: 15px;
+          width: 15px;
+        }
+        @keyframes orbit {
+          0% { -webkit-transform:rotate(0deg); }
+          50% { -webkit-transform:rotate(-180deg); }
+          100% { -webkit-transform:rotate(-360deg); }
+        } 
+        @-webkit-keyframes orbit{
+          0%{ -webkit-transform:rotate(0deg); }
+          50%{ -webkit-transform:rotate(-180deg); }
+          100%{ -webkit-transform:rotate(-360deg); }
+        }
+        @-moz-keyframes orbit{
+          0%{ -moz-transform:rotate(0deg); }
+          50%{ -moz-transform:rotate(-180deg); }
+          100%{ -moz-transform:rotate(-360deg); }
+        }
+        @keyframes glow{
+          0%{ box-shadow: none; }
+          50%{ background: #FFEB00; box-shadow: 0 0 20px orange; }
+          100%{ box-shadow: none; }
+        }
+        @-webkit-keyframes glow{
+          0%{ box-shadow: none; }
+          50%{ background: #FFEB00; box-shadow: 0 0 20px orange; }
+          100%{ box-shadow: none; }
+        }
+        @-moz-keyframes glow{
+          0%{ box-shadow: none; }
+          50%{ background: #FFEB00; box-shadow: 0 0 20px orange; }
+          100%{ box-shadow: none; }
+        }
+      </style>
+      <div id="app-loading">
+        <h5 class="loading-hint">页面加载中,请稍候...</h5>
+        <div class="solar">
+          <i class="mercury"></i>
+          <i class="venus"></i>
+          <i class="earth"></i>
+          <i class="mars"></i>
+          <i class="belt"></i>
+          <i class="jupiter"></i>
+          <i class="saturn"></i>
+          <i class="uranus"></i>
+          <i class="neptune"></i>
+        </div>
+      </div>
+    </app-root>
   </div>
   <script>
     var userAgent = navigator.userAgent;
@@ -56,5 +310,5 @@
       document.getElementById('app-container').style.display = 'none';
     }
   </script>
-<script type="text/javascript" src="runtime.510b022d1812ea4f78ec.js"></script><script type="text/javascript" src="polyfills.c6871e56cb80756a5498.js"></script><script type="text/javascript" src="scripts.9e72b6f586195bbe5734.js"></script><script type="text/javascript" src="main.5016277e7abe793194b5.js"></script></body>
+<script type="text/javascript" src="runtime.510b022d1812ea4f78ec.js"></script><script type="text/javascript" src="polyfills.c6871e56cb80756a5498.js"></script><script type="text/javascript" src="scripts.71afd575230ad5267233.js"></script><script type="text/javascript" src="main.5016277e7abe793194b5.js"></script></body>
 </html>
