@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd';
 
+declare var SimpleMDE: any;
+
 @Component({
   selector: 'app-publish',
   templateUrl: './publish.component.html',
