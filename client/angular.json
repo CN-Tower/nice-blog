@@ -38,7 +38,8 @@
               "src/styles.less"
             ],
             "scripts": [
-              "src/assets/lib/simplemde/js/simplemde.min.js"
+              "src/assets/lib/simplemde/js/simplemde.min.js",
+              "src/assets/js/marked.min.js"
             ]
           },
           "configurations": {
