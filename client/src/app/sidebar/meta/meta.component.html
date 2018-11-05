@@ -1,4 +1,4 @@
-<nz-card>
+<nz-card nzTitle="博友信息" [nzExtra]="extraTemplate" >
   <nz-card-meta nzTitle="CN-Tower" nzDescription="喜欢折腾，乐于分享"></nz-card-meta>
   <div style="margin-top: 16px;">
     <p><i nz-icon type="team" theme="outline"></i>&nbsp;zte</p>
@@ -6,3 +6,6 @@
     <p><i nz-icon type="link" theme="outline"></i>&nbsp;<a href="http://cntower.net.cn">http://cntower.net.cn</a></p>
   </div>
 </nz-card>
+<ng-template #extraTemplate>
+  <a>我的信息&nbsp;&gt;&gt;</a>
+</ng-template>
