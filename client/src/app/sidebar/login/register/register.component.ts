@@ -15,14 +15,17 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.validateForm = this.fb.group({
-      email            : [ null, [ Validators.email ] ],
+      email            : [ null, [ Validators.email, Validators.required ] ],
       password         : [ null, [ Validators.required ] ],
       checkPassword    : [ null, [ Validators.required, this.confirmationValidator ] ],
       nickname         : [ null, [ Validators.required ] ],
       phoneNumberPrefix: [ '+86' ],
       websetPrefix     : [ 'http://' ],
-      phoneNumber      : [ null, [ Validators.required ] ],
-      website          : [ null, [ Validators.required ] ],
+      phoneNumber      : [ null ],
+      website          : [ null ],
+      company          : [ null ],
+      address          : [ null ],
+      bio              : [ null ],
       captcha          : [ null, [ Validators.required ] ],
       agree            : [ false ]
     });
@@ -48,10 +51,6 @@ export class RegisterComponent implements OnInit {
     } else if (control.value !== this.validateForm.controls.password.value) {
       return { confirm: true, error: true };
     }
-  }
-
-  getCaptcha(e: MouseEvent): void {
-    e.preventDefault();
   }
 
   close(): void {
