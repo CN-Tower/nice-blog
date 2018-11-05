@@ -35,28 +35,22 @@ export class HeaderComponent implements OnInit {
     });
     setTimeout(() => {
       this.optionGroups = [{
-        title: '话题',
+        title: '文章',
         children: [{
-          title: 'AntDesign',
+          title: '耐思博客很Nice!',
           count: 10000
         },         {
-          title: 'AntDesign UI',
+          title: 'Markdown编辑器使用方法',
           count: 10600
         }]
-      },              {
-        title: '问题',
+      }, {
+        title: '用户',
         children: [{
-          title: 'AntDesign UI 有多好',
+          title: 'CN-Tower',
           count: 60100
         },         {
           title: 'AntDesign 是啥',
           count: 30010
-        }]
-      },              {
-        title: '文章',
-        children: [{
-          title: 'AntDesign 是一个设计语言',
-          count: 100000
         }]
       }];
     }, 1000);
