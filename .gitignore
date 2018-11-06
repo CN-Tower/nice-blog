@@ -4,10 +4,15 @@
 /client/dist
 /client/tmp
 /client/out-tsc
-
-# dependencies
 /client/node_modules
+/client/package-lock.json
+
 /server/node_modules
+/server/package-lock.json
+/server/coverage
+/server/.DS_Store
+/server/**/.DS_Store
+/server/.env.local
 
 # IDEs and editors
 /.idea
