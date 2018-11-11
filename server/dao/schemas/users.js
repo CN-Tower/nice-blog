@@ -7,10 +7,11 @@ const usersSchema = new Schema({
 	password: String,
 	id: Number,
   create_time: String,
-  phone_number: String,
-  address: String,
+  phone_number: { type: String, default: '' },
+  address: { type: String, default: '' },
+  provider: { type: String, default: '' },
 
-})
+});
 
 usersSchema.index({id: 1});
 
