@@ -2,12 +2,11 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 const adminSchema = new Schema({
-	name: String,
-	password: String,
-	id: Number,
-  create_time: String,
-  admin_type: String
+  id: String,
+  name: String,
+  password: String,
+  createTime: String,
+  adminType: {type: Number, default: 0},
 });
-adminSchema.index({id: 1});
 
 export default adminSchema;
