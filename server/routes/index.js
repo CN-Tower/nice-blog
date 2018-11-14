@@ -1,9 +1,13 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+import User from '../controller/user';
+import Article from '../controller/article';
+import Comment from '../controller/comment';
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const router = express.Router();
 
-module.exports = router;
+router.post('/test', User.register);
+// router.post('/test', (req, res, next) => {
+//   res.send(200, {'msg': 'ok'});
+// });
+
+export default router;
