@@ -27,8 +27,7 @@ class UserSchema extends Schema {
       comments:   [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
       replies:    { type: Array, default: [] },
       messages:   { type: Array, default: [] },
-      activity:   { type: Number, default: 0 },
-      registTime: { type: Date, default: new Date() }
+      activity:   { type: Number, default: 0 }
     }, { timestamps: true });
 
     this.methods = fn.extend({}, this, [ 'generateJWT' ]);
