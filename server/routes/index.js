@@ -1,6 +1,6 @@
 import express from 'express';
 import validate from '../middlewares/validate';
-import auth from '../controller/auth'
+import auth from '../settings/auth'
 import user from '../controller/user'
 // import article from '../controller/article'
 // import comment from '../controller/comment'
