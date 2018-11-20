@@ -6,16 +6,17 @@ import logger from 'morgan';
 import session from 'express-session';
 import router from './routes/index';
 import config from 'config-lite';
-import './mongodb';
+import './settings/mongodb';
+import './settings/passport';
 
 const app = express();
 
 app.all('*', (req, res, next) => {
 	res.header("X-Powered-By", '1.0.1')
 	if (req.method == 'OPTIONS') {
-		res.status(200).send({ message: 'ok' });
+    res.status(200).send({ message: 'ok' });
 	} else {
-		next();
+    next();
 	}
 });
 
