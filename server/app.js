@@ -13,7 +13,7 @@ const app = express();
 
 app.all('*', (req, res, next) => {
   res.header("X-Powered-By", '1.0.1');
-  if (req.method == 'OPTIONS') {
+  if (req.method === 'OPTIONS') {
     res.status(200).send({ message: 'ok' });
   } else {
     next();
