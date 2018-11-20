@@ -15,12 +15,12 @@ const CommentSchema = new Schema({
 });
 
 class CommentClass {
-  toJSONFor(user) {
+  toJSON() {
     return {
       id: this._id,
       body: this.body,
       createdAt: this.createdAt,
-      author: this.author.toProfileJSON(),
+      author: this.author.toJSON(),
       replies: this.replies.toJSON()
     };
   }
