@@ -12,7 +12,7 @@ const UserSchema = new Schema({
   phoneNb:   { type: String, unique: true, trim: true },
   password:  { type: String, required: [true, "Can't be blank"] },
   userType:  { type: Number, default: 1 },
-  avater:    { type: String, default: '' },
+  avater:    { type: String, default: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' },
   address:   { type: String, default: '' },
   company:   { type: String, default: '' },
   webset:    { type: String, default: '' },
@@ -44,7 +44,6 @@ class UserClass {
     var today = new Date();
     var exp = new Date(today);
     exp.setDate(today.getDate() + 60);
-
     return jwt.sign({
       id: this._id,
       username: this.username,
@@ -75,18 +74,28 @@ class UserClass {
   }
   toAuthJSON() {
     return {
+      id: this._id,
       username: this.username,
       email: this.email,
-      token: this.generateJWT(),
       bio: this.bio,
-      image: this.image
+      avater: this.avater,
+      token: this.generateJWT(),
     };
   }
-  toProfileJSONFor(user) {
+  toJSON() {
     return {
+      id: this._id,
       username: this.username,
       bio: this.bio,
-      avater: this.avater || 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+      avater: this.avater
+    };
+  }
+  toJSONFor(user) {
+    return {
+      id: this._id,
+      username: this.username,
+      bio: this.bio,
+      avater: this.avater,
       following: user ? user.isFollowing(this._id) : false
     };
   }
