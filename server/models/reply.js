@@ -13,7 +13,7 @@ const ReplySchema = new Schema({
 });
 
 class ReplyClass {
-  toJSONFor() {
+  toJSON() {
     return {
       id: this._id,
       body: this.body,
