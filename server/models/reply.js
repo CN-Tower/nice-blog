@@ -18,8 +18,8 @@ class ReplyClass {
       id: this._id,
       body: this.body,
       createdAt: this.createdAt,
-      author: this.author.toProfileJSON(),
-      replyTo: this.replyTo.toProfileJSON()
+      author: this.author.toJSON(),
+      replyTo: this.replyTo.toJSON()
     };
   }
 }
