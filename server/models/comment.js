@@ -3,21 +3,12 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema({
-  owner:   { type: Schema.Types.ObjectId, ref: 'User' },
+  author:  { type: Schema.Types.ObjectId, ref: 'User' },
   article: { type: Schema.Types.ObjectId, ref: 'Article', required: [true, "Can't be blank"], index: true },
-  total:   { type: Number, default: 0 },
   body:    { type: String, required: [true, "Can't be blank"], trim: true },
-  replies: [
-    {
-      _id: Schema.Types.ObjectId,
-      owner:   { type: Schema.Types.ObjectId, ref: 'User' },
-      retlyTo: { type: Schema.Types.ObjectId, ref: 'User' },
-      text: String,
-      createAt: Date,
-      updateAt: Date,
-      thumbUserIds: { type: Array, default: [] },
-    }
-  ]
+  thumbUsers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  total:   { type: Number, default: 0 },
+  replies: [{ type: Schema.Types.ObjectId, ref: 'Reply' }]
 }, {
   timestamps: true,
   collection: 'comments'
@@ -29,7 +20,8 @@ class CommentClass {
       id: this._id,
       body: this.body,
       createdAt: this.createdAt,
-      author: this.author.toProfileJSONFor(user)
+      author: this.author.toProfileJSON(),
+      replies: this.replies.toJSON()
     };
   }
 }
