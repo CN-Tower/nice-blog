@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzDrawerService } from 'ng-zorro-antd';
 import { RegisterComponent } from './register/register.component';
+import { SharedService } from '../../shared/shared.service';
 
 
 @Component({
@@ -12,13 +13,17 @@ import { RegisterComponent } from './register/register.component';
 export class LoginComponent implements OnInit {
   validateForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private drawerService: NzDrawerService) { }
+  constructor(
+    private fb: FormBuilder,
+    private drawerService: NzDrawerService,
+    private sharedService: SharedService
+  ) { }
 
   ngOnInit() {
     this.validateForm = this.fb.group({
       userName: [ null, [ Validators.required ] ],
       password: [ null, [ Validators.required ] ],
-      captcha: [ null, [ Validators.required ] ],
+      captcha:  [ null, [ Validators.required ] ],
       remember: [ true ]
     });
   }
@@ -33,18 +38,19 @@ export class LoginComponent implements OnInit {
   }
 
   goToRegister() {
+    this.sharedService.registerModel.next(true);
     const drawerRef = this.drawerService.create<RegisterComponent, { value: string }, string>({
       nzTitle: '用户注册',
       nzContent: RegisterComponent,
       nzWidth: '520px'
     });
-
     drawerRef.afterOpen.subscribe(() => {
       console.log('Drawer(Component) open');
     });
 
     drawerRef.afterClose.subscribe(data => {
       console.log(data);
+      this.sharedService.registerModel.next(false);
     });
   }
 }
