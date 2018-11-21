@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const ArticleSchema = new Schema({
   title:       { type: String, required: [true, "can't be blank"] },
-  tabs:        { type: Array,  default: [] },
+  tags:        { type: Array,  default: [] },
   description: { type: String, default: '' },
   body:      { type: String, required: [true, "can't be blank"] },
   owner:     { type: Schema.Types.ObjectId, ref: 'User', required: [true, "Can't be blank"], index: true },
