@@ -49,6 +49,8 @@ router.get   ('/admin/user/:id/profile',  auth.required, user.getProfile       )
 router.get   ('/admin/user/:id/comments', auth.required, user.getComments      );
 router.delete('/admin/user/:id',          auth.required, user.deleteUser       );
 router.put   ('/admin/article/:id/edit',  auth.required, article.editArticle   );
+router.get   ('/admin/article/:id/info',  auth.optional, article.getInfo       );
+router.get   ('/admin/article/:id/comments', auth.optional, article.getComments   );
 router.get   ('/admin/article/list',      auth.required, article.getList       );
 router.delete('/admin/article/:id',       auth.required, article.deleteArticle );
 router.delete('/admin/comment/:id',       auth.required, comment.deleteComment );
