@@ -5,7 +5,7 @@ class UserController {
 
   async register (req, res, next) {
     try {
-      var user = new User();
+      const user = new User();
       user.username = req.body.user.username;
       user.email = req.body.user.email;
       user.setPassword(req.body.user.password);
@@ -17,34 +17,38 @@ class UserController {
   }
 
   async login (req, res, next) {
-    if (!req.body.user.email) {
-      return res.status(422).json({ errors: { email: "can't be blank" } });
-    }
-    if (!req.body.user.password) {
-      return res.status(422).json({ errors: { password: "can't be blank" } });
-    }
-    passport.authenticate('local', { session: false }, function (err, user, info) {
-      if (err) return next(err);
-      if (user) {
-        user.token = user.generateJWT();
-        return res.json({ user: user.toAuthJSON() });
-      } else {
-        return res.status(422).json(info);
-      }
-    })(req, res, next);
-  }
-
-  async getUserAuthInfo (req, res, next) {
+    fn.log(req.payload);
     try {
-      const user = await User.findById(req.payload.id);
-      if (!user) return res.sendStatus(401);
-      return res.json({ user: user.toAuthJSON() });
+      if (!req.body.username || !req.body.password) {
+        return res.status(422).json({
+          status: 0,
+          type: 'LOGIN_PARAMS_ERROR',
+          message: '用户名或密码不能为空！'
+        });
+      }
+      const user = await User.findOne({username: req.body.username});
+      if (!user) {
+        return res.status(422).json({
+          status: 0,
+          type: 'LOGIN_PARAMS_ERROR',
+          message: '用户名或密码错误！'
+        });
+      }
+      res.status(200).json({status: 1, token: user.generateJWT()})
     } catch (err) {
       return next(err);
     }
   }
 
-  async updateUser (req, res, next) {
+  async action (req, res, next) {
+    try {
+      return res.status(200).json({status: 1, message: 'ok'});
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+  async setup (req, res, next) {
     try {
       const user = await User.findById(req.payload.id);
       if (!user) return res.sendStatus(401);
@@ -66,6 +70,80 @@ class UserController {
       }
       await user.save();
       return res.json({ user: user.toAuthJSON() });
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+  async getProfile (req, res, next) {
+    try {
+      return res.status(200).json({status: 1, message: 'ok'});
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+  async getComments (req, res, next) {
+    try {
+      return res.status(200).json({status: 1, message: 'ok'});
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+  async getInfo (req, res, next) {
+    try {
+      return res.status(200).json({status: 1, message: 'ok'});
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+  async getFollowing (req, res, next) {
+    try {
+      return res.status(200).json({status: 1, message: 'ok'});
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+  async getFollowers (req, res, next) {
+    try {
+      return res.status(200).json({status: 1, message: 'ok'});
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+  async getList() {
+    try {
+      const user = await User.findById(req.payload.id);
+      if (!user) return res.sendStatus(401);
+      return res.json({ user: user.toAuthJSON() });
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+  async getActive (req, res, next) {
+    try {
+      return res.status(200).json({status: 1, message: 'ok'});
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+  async deleteUser (req, res, next) {
+    try {
+      return res.status(200).json({status: 1, message: 'ok'});
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+  async forbid (req, res, next) {
+    try {
+      return res.status(200).json({status: 1, message: 'ok'});
     } catch (err) {
       return next(err);
     }
