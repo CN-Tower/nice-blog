@@ -13,7 +13,7 @@ export class AppComponent implements AfterViewInit {
   title = 'nice-blog';
   isRegisterModelOpen: Boolean = false;
 
-  constructor(
+  constructor (
     private sharedService: SharedService
   ) {
     this.sharedService.registerModel$.subscribe(isOpen => {
