@@ -1,8 +1,10 @@
 <header>
-  <app-header></app-header>
+  <app-header id="app-header"
+    [style.margin]="isRegisterModelOpen ? '0 0 0 '+ sidebar.offsetLeft + 'px' : '0 auto'">
+  </app-header>
 </header>
-<section id="app-body" class="page-wrapper flex">
-  <div id="sidebar">
+<section id="app-body" class="page-wrapper flex-x">
+  <div id="sidebar" #sidebar>
     <app-sidebar></app-sidebar>
   </div>
   <div id="app-main">
