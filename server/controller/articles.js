@@ -53,7 +53,8 @@ class ArticleController {
 
   async getTags (req, res, next) {
     try {
-      return res.status(200).json({status: 1, message: 'ok'});
+      const tags = await Article.find().distinct('tags');
+      return res.status(200).json({status: 1, tags: tags.slice(0, 15)});
     } catch (err) {
       return next(err);
     }
