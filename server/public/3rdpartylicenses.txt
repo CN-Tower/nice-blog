@@ -209,12 +209,6 @@ Apache-2.0
  
 
 
-@angular/platform-browser
-MIT
-
-@angular/common
-MIT
-
 tslib
 Apache-2.0
 Apache License
@@ -273,6 +267,12 @@ If the Work includes a "NOTICE" text file as part of its distribution, then any 
 
 END OF TERMS AND CONDITIONS
 
+
+@angular/platform-browser
+MIT
+
+@angular/common
+MIT
 
 @angular/cdk
 MIT
