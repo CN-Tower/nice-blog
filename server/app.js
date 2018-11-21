@@ -1,13 +1,12 @@
 import express from 'express';
-import fn from 'funclib';
-import path from 'path';
+import path    from 'path';
+import fn      from 'funclib';
 import cookieParser from 'cookie-parser';
-import logger from 'morgan';
+import logger  from 'morgan';
 import session from 'express-session';
-import router from './routes/index';
-import config from 'config-lite';
+import config  from 'config-lite';
+import router  from './router';
 import './settings/mongodb';
-import './settings/passport';
 
 const app = express();
 
@@ -35,22 +34,23 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/v1.0', router);
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(function(err, req, res, next) {
+  app.use(function (err, req, res, next) {
     res.status(err.status || 500);
-    res.json({'errors': { message: err.message, error: {} }});
+    res.json({ status: 0, type: 'SERVER_PROCESS_ERROR', message: err.message });
   });
 } else {
-  app.use(function(err, req, res, next) {
-    // fn.log(err.stack, 'Error Stack');
+  app.use(function (err, req, res, next) {
+    // fn.log(err);
+    fn.log(err.stack, 'Error Stack');
     res.status(err.status || 500);
-    res.json({'errors': { message: err.message, error: err }});
+    res.json({ status: 0, type: 'SERVER_PROCESS_ERROR', message: err.message });
   });
 }
 
