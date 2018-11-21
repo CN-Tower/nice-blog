@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { SharedService } from './shared/shared.service';
 
 @Component({
   selector: 'app-root',
@@ -6,8 +7,19 @@ import { Component, AfterViewInit, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./app.component.less'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class AppComponent implements AfterViewInit {
+
   title = 'nice-blog';
+  isRegisterModelOpen: Boolean = false;
+
+  constructor(
+    private sharedService: SharedService
+  ) {
+    this.sharedService.registerModel$.subscribe(isOpen => {
+      this.isRegisterModelOpen = isOpen;
+    });
+  }
 
   ngAfterViewInit() {
     this.initSidebarScroll();
