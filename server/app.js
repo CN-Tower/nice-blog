@@ -4,8 +4,10 @@ import fn      from 'funclib';
 import cookieParser from 'cookie-parser';
 import logger  from 'morgan';
 import session from 'express-session';
+import timeout from 'connect-timeout';
 import config  from 'config-lite';
 import router  from './router';
+
 import './settings/mongodb';
 
 const app = express();
@@ -31,6 +33,7 @@ app.use(session({
   saveUninitialized: false
 }));
 
+// app.use(timeout(10000));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/v1.0', router);
 
@@ -42,15 +45,14 @@ app.use(function (req, res, next) {
 
 if (process.env.NODE_ENV === 'production') {
   app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.json({ status: 0, type: 'SERVER_PROCESS_ERROR', message: err.message });
+    res.status(err.status || fn.typeVal(err.code, 'num') || 500);
+    res.json({ status: 0, message:  err.message, type: 'SERVER_PROCESS_ERROR' });
   });
 } else {
   app.use(function (err, req, res, next) {
-    // fn.log(err);
     fn.log(err.stack, 'Error Stack');
-    res.status(err.status || 500);
-    res.json({ status: 0, type: 'SERVER_PROCESS_ERROR', message: err.message });
+    res.status(err.status || fn.typeVal(err.code, 'num') || 500);
+    res.json({ status: 0, message:  err.message, type: 'SERVER_PROCESS_ERROR' });
   });
 }
 
