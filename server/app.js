@@ -4,7 +4,6 @@ import fn      from 'funclib';
 import cookieParser from 'cookie-parser';
 import logger  from 'morgan';
 import session from 'express-session';
-import timeout from 'connect-timeout';
 import config  from 'config-lite';
 import router  from './router';
 
@@ -33,7 +32,6 @@ app.use(session({
   saveUninitialized: false
 }));
 
-// app.use(timeout(10000));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/v1.0', router);
 
